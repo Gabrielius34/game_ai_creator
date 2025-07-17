@@ -1,0 +1,22 @@
+import os
+
+def generuoti_ursina(aprasymas, parametrai):
+    turinys = f"""from ursina import *
+
+app = Ursina()
+
+player = Entity(model='cube', color=color.orange, scale_y=2)
+camera.position = (0, 10, -30)
+camera.rotation_x = 30
+
+def update():
+    player.x += held_keys['d'] * 0.1
+    player.x -= held_keys['a'] * 0.1
+
+app.run()
+"""
+    pavadinimas = "projekti/ursina_zaidimas.py"
+    os.makedirs("projekti", exist_ok=True)
+    with open(pavadinimas, "w", encoding="utf-8") as f:
+        f.write(turinys)
+    print(f"✅ Sukurtas žaidimas: {pavadinimas}")
